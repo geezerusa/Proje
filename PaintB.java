@@ -17,17 +17,18 @@ public class PaintB extends JPanel implements ActionListener,MouseListener{
 	double ax2 =0,ay2=0;
 	double ax3 =0,ay3=0;
 	double velocity = 15;
+	int counter = 0;
 	Ellipse2D.Double b = new Ellipse2D.Double(300,250,size,size);
 	Ellipse2D.Double b2 = new Ellipse2D.Double(500,150,size,size);
 	Ellipse2D.Double b3 = new Ellipse2D.Double(500,350,size,size);
-	javax.swing.Timer tmr = new javax.swing.Timer(15, this);
+	javax.swing.Timer tmr = new javax.swing.Timer(5, this);
 	PaintB(){
 		addMouseListener(this);
 	}
 	public void positionUpdater() {
 		double difx = b2.x-b.x;
 		double dify = b2.y-b.y;
-		double Umagnitude =Math.hypot(difx, dify);
+		double Umagnitude = Math.hypot(difx, dify);
 		b.x+= ax;
 		b.y+=ay;
 		b2.x+= ax2;
@@ -54,20 +55,22 @@ public class PaintB extends JPanel implements ActionListener,MouseListener{
 		}*/
 		if(b.x<30 ||b.x>690) {
 			ax = -ax;
+			counter++;
 		}
 		if(b.y<70 ||b.y>470) {
 			ay = -ay;
+			counter++;
 		}
-		if(b2.x<30 ||b2.x>730) {
+		if(b2.x<30 ||b2.x>690) {
 			ax2 = -ax2;
 		}
-		if(b2.y<70 ||b2.y>510) {
+		if(b2.y<70 ||b2.y>470) {
 			ay2 = -ay2;
 		}
-		if(b3.x<30 ||b3.x>730) {
+		if(b3.x<30 ||b3.x>690) {
 			ax3 = -ax3;
 		}
-		if(b3.y<70 ||b3.y>510) {
+		if(b3.y<70 ||b3.y>470) {
 			ay3 = -ay3;
 		}
 		if(Umagnitude <= b.width) {
@@ -107,7 +110,7 @@ public void paint(Graphics g) {
 	gr2d.fill(b2);
 	gr2d.fill(b3);
 	gr2d.setColor(Color.BLACK);
-	gr2d.drawString( Menu.name + "'s score :  " + 50 + "", 10, 10);
+	gr2d.drawString( Menu.name + "'s score :  " + counter + "", 10, 10);
 }
 
 	@Override
@@ -121,39 +124,22 @@ public void paint(Graphics g) {
 			double dy = y2-y1;
 			ax = velocity*dx/Math.sqrt(dx*dx+dy*dy);
 			ay = velocity*dy/Math.sqrt(dx*dx+dy*dy);
-			ax =-2;
-			ay=-2;
+			ax = -2;
+			ay = -2;
 			tmr.start();
-		}
-		
+		}	
 	}
-
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mousePressed(MouseEvent e) {		
 	}
-
-
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseReleased(MouseEvent e) {	
 	}
-
-
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseEntered(MouseEvent e) {	
 	}
-
-
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseExited(MouseEvent e) {	
 	}
-
 }
